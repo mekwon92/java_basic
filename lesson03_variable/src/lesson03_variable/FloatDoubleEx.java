@@ -13,5 +13,12 @@ public class FloatDoubleEx {
 		
 		System.out.println("double d2: "+d2);
 		System.out.println("double d3: "+d3);
+		
+		double d4 = 10 / 4; // 2.0
+		double d5 = 10 / 4d; // 2.5
+		
+		System.out.println("double d4: "+d4);
+		System.out.println("double d5: "+d5);
+		
 	}
 }

@@ -18,13 +18,12 @@ public class Score {
 		int mat = scanner.nextInt();
 		
 	// 총점
-		int total = 0;
-		total = kor + eng + mat;
-	// 평균(소수점 둘째자리로 반올림)
-		double avg = (int)(total /3d * 100 + 0.5) / 100d;
-			
+		int total = kor + eng + mat;
 		
 	
+	// 평균(소수점 둘째자리로 반올림)
+		double avg = (int)(total / 3d * 100 + 0.5) / 100d;
+			
 		
 		System.out.println("==================================");
 		System.out.println("이름  국어  영어  수학  총점  평균");
@@ -32,10 +31,7 @@ public class Score {
 		System.out.printf("%4s %4d %4d %4d %4d %4f\n", name, kor, eng, mat, total, avg);
 		System.out.println("==================================");
 		System.out.println();
-		
-		double pi = 3.141592;
-		System.out.println((int)(pi * 1000) / 1000d); //3141.0 -> 3.141
-		System.out.println((int)(pi * 1000 + 0.5) / 1000d); //3141.5 / 100d
+
 	}
 		
 	
