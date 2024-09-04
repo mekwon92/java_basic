@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class ArrEx9 {
 	public static void main(String[] args) { //진입. 외부의 매개변수 값을 문자열의 형태로 가져오겠다.
-											//String[] args = new String[0]; 과 같음. 공간이 없음
+											//String[] args = new String[0]; 과 같음. 공간 자체가 없음
 		System.out.println("첫번째 값 : " + args[0]);
 		System.out.println("첫번째 값 : " + args[1]);
 

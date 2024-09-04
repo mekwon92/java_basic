@@ -14,19 +14,20 @@ public class Ref2 {
 		System.out.println(str2.charAt(2));
 		System.out.println(str3.charAt(2));
 		
-		System.out.println(str1 == str2);
-		System.out.println(str1 == str3);
+		System.out.println(str1 == str2); // 이 둘의 주소값은 같지만
+		System.out.println(str1 == str3); // 이 둘의 주소값은 다름
 		
 System.out.println();
 		
 		
 		System.out.println(str1.equals(str2)); //문자열비교는 이걸로 하자!
-		System.out.println(str1.equals(str3));
+		System.out.println(str1.equals(str3)); // String1.equals(String2)
 		
 
 System.out.println();
 				
 	
+		System.out.println(str1 == str2.intern()); //본질값
 		System.out.println(str1 == str3.intern()); //본질값
 		
 System.out.println();

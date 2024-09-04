@@ -1,5 +1,6 @@
 package lesson06_array;
-//향상된 for문
+//향상된 for문 
+
 //for(타입변수 : 배열)
 //1. 인덱스에 접근 못함.
 //2. 읽기전용
@@ -10,20 +11,19 @@ import java.util.Arrays;
 public class Enhanced {
 	public static void main(String[] args) {
 		int[] arr = {10, 15, 5, 20, 30};
+		
+		//기존의 for
 		for (int i = 0;  i< arr.length; i++) {
 			System.out.print(arr[i]+" ");
 		}
 		System.out.println();
-		//향상된 for
-		/*
-		 * for(타입변수:배열) 
-		 * 
-		 */
 		
+		// 향상된 for
 		for(int num : arr) {
-			num = 100;
+			num = 100; //바꿔도 원래값은 변하지 않음
 			System.out.print(num + " ");
 		}
+		System.out.println();
 		System.out.println(Arrays.toString(arr));
 		System.out.println();
 		
