@@ -1,5 +1,5 @@
 package lesson4_operator;
-
+//논리연산
 public class OpEx5 {
 	public static void main(String[] args) {
 		

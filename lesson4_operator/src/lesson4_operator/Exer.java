@@ -17,10 +17,10 @@ public class Exer {
 		int studentCount = 27;
 		
 		int divColorPen = colorpen / studentCount;
-		System.out.println("학생당 색연필수" + divColorPen);
+		System.out.println("학생당 색연필 수 : " + divColorPen);
 		
 		int remaincolor = colorpen % studentCount;
-		System.out.println("학생당 색연필수" + remaincolor);
+		System.out.println("똑같이 나눠갖고 남은 색연필 수 : " + remaincolor);
 	
 	//4번문제 풀이
 		int age = 8; 

@@ -12,8 +12,7 @@ public class OpEx6_2 {
 		int num2 = Integer.parseInt("1234"); //문자열을 숫자로 만들어줌! (tab키 사용하기)
 		System.out.println(num2 % 10);
 		
-		String bin = "101110";
-		int num3 = Integer.parseInt(bin, 2);
+		int num3 = Integer.parseInt("1010", 2);
 		System.out.println(num3);
 		
 		String bin2 = "FA";

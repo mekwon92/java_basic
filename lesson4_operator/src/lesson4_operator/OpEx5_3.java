@@ -1,5 +1,5 @@
 package lesson4_operator;
-
+//비교연산의 결과는 false, true로 나온다
 public class OpEx5_3 {
 	public static void main(String[] args) {
 		

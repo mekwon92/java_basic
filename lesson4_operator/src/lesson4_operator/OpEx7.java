@@ -19,24 +19,27 @@ public class OpEx7 {
 		
 		
 		char ch = 'A';
-		char ch2 = (char)(ch + 1); //산술 형 상승 : int보다 작은 숫자 타입을 이항 연산 시 int로 변환
+		char ch2 = (char)(ch + 1);
+		int ch3 = ch + 1;
+		//산술 형 상승 : int보다 작은 숫자 타입을 이항 연산 시 int로 변환
 		System.out.println(ch2);
+		System.out.println(ch3);
 		
 		byte b = Byte.MAX_VALUE;
 		byte b1 = 1;
 		byte b2 = (byte)(b - b1);
+		
 		System.out.println(b+" "+ b1+" "+ b2);
 		
 		int i = 300;
 		byte b3 = (byte)i;
 		
-
-		//유니코드에서 한글 갯수 알아보기
 		
 		System.out.println(i);
 		System.out.println(b3); // 형변환되어 값손실발생
 		System.out.println(Integer.toBinaryString(i)); // byte는 8비트라 앞에 짤림
-		
+	
+	//유니코드에서 한글 갯수 알아보기
 		System.out.println("한글 글자 개수:" + (int)('힣'-'가'+1));
 		System.out.println("영어 알파벳 개수:" + (int)('Z'-'A'+1));
 		System.out.println((int)('9'-'0'+1));
@@ -49,7 +52,7 @@ public class OpEx7 {
 	
 		int cnt = 0;
 		for(ch = '가' ; ch < '까' ; ch ++) {
-			System.out.print(ch); // print만 쓸 경우
+			System.out.print(ch); // print만 쓸 경우 줄바꿈없이 이어서작성가능함
 			cnt++; //갯수측정
 		}
 		System.out.println(cnt * 19);

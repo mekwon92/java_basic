@@ -1,5 +1,5 @@
 package lesson5_control;
-
+//주민등록번호 검증
 public class SwitchEx4 {
 	public static void main(String[] args) {
 		//시작숫자는 0
