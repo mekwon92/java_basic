@@ -3,11 +3,11 @@ package lesson07_oop;
 public class CarMain {
 	public static void main(String[] args) {
 		
-		Car tico = new Car();
+		Car tico = new Car(); //tico는 객체 new Car()은 인스턴스
 		Car pride = new Car();
 		
 		
-		tico.color = "화이트";
+		tico.color = "화이트"; //
 		tico.company = "대우";
 		tico.type = "경차";
 	//  color = ""; 사용불가
