@@ -1,11 +1,9 @@
 package day2;
-//선택정렬도 해보기~!!
+//버블정렬(오름차순)
 import java.util.Arrays;
 
 public class Bubble {
 	public static void main(String[] args) {
-		// 오름차순정렬(작은수~큰수)
-		// 버블정렬
 		int[] arr = {1,2,3,4,5,6,7};
 		
 		System.out.println("초기 :: " + Arrays.toString(arr));
