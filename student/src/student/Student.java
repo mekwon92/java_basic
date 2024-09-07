@@ -11,6 +11,8 @@ public class Student {
 	
 	//생성자
 	
+	public Student() {}
+	
 	public Student(int no, String name, int kor, int eng, int mat) {
 		super();
 		this.no = no;
