@@ -28,14 +28,15 @@ public class StudentService {
 		students[cnt].eng = StudentUtils.nextInt("영어점수");
 		students[cnt++].mat = StudentUtils.nextInt("수학점수");
 			*/	
+		if(cnt == students.length) { //꼭 미리 해야함
+			students = Arrays.copyOf(students, students.length * 2);
+		}
+		
 		int no = nextInt("학번");
 		String name = nextLine("이름");
 		int kor = nextInt("국어");
 		int eng = nextInt("영어");
 		int mat = nextInt("수학");
-		if(cnt == students.length) { //꼭 미리 해야함
-			students = Arrays.copyOf(students, students.length * 2);
-		}
 		students[cnt++] = new Student(no, name, kor, eng, mat);
 	}
 	//학생 목록 조회
