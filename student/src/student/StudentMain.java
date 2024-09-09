@@ -3,8 +3,8 @@ package student;
 import java.util.Scanner;
 
 //UI
-//Create Read(배열?) Update Delete
-//배열길이 늘리는 과제 + car배열?... 학번으로 구분.......
+//CRUD : Create Read(배열?) Update Delete
+//학번으로 구분.......
 public class StudentMain {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
