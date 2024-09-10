@@ -1,34 +1,35 @@
 package lesson07_oop;
 
 public class MethodMain {
-	public static void main(String[] args) {
-	
-		//클래스를 불러오려면 static필요...
+	public static void main(String[] args) { //클래스를 불러오려면 static필요...
 		
 		Param p = new Param();
 				  
 		
-		//객체로 받는다.
+		//객체로 받는법 p.add(10, 20)
 				    //대입연산자는 여기서 대기		
-		/*int result = p.add(10, 20);//10, 20 : argument
+		int result = p.add(10, 20);//10, 20 : argument
 		System.out.println(result);
 		System.out.println(p.add(30, p.add(30, 20)));
 		System.out.println(p.add(30, 40));
 		System.out.println(new Param().add(40, 50)); //1회성으로 호출하는방법
 		
-		//클래스로 받는다
+		//add는 p.add 가능, Param.add 가능함
+		//static add2는 p.add2불가능 Param.add2만 가능
+		
+		//클래스로 받는법 Param.add2(10, 90)
 		int b = Param.add2(10, 90);
 		System.out.println(b);
 		System.out.println(Param.add2(40, 90));
-		*/
+		
 		
 		
  
-		/*int c = Param.max(new int[] {10, 20, 30, 4, 1, 50});
+		int c = Param.max(new int[] {10, 20, 30, 4, 1, 50});
 		System.out.println(c);
 		System.out.println(Param.max(new int[] {}));
 		System.out.println(Param.max(null)); //이것도 형식상으로는 가능하지만..... 클래스에서 막아주자 유효성검증..
-		*/
+		
 		
 		//가변인자
 		Param.min(1,2,3,4,5,6,7,8); //몇개를 넣어도 상관없음
@@ -55,11 +56,10 @@ public class MethodMain {
 //return 이후에는 추가적인 작업 안하고 호출자로 돌아감~
 
 class Param {
+	
 	int add(int a, int b) { // a, b: parameter
 		return a+b;
 	}
-	
-	
 	
 	static int add2(int a, int b) {
 		return a+b;

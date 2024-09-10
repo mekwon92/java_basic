@@ -9,7 +9,7 @@ import static java.lang.Integer.parseInt;//자주쓰는거 등을.....
 public class Main {
 	java.sql.Date d = new java.sql.Date(0);
 	public static void main(String[] args) {
-		day2.Circle circle = new day2.Circle();
+		lesson07_opp.day2.Circle circle = new lesson07_opp.day2.Circle();
 		java.util.Scanner scanner = new java.util.Scanner(System.in);
 		Date date = new Date();
 		Arrays.toString(new int[] {});

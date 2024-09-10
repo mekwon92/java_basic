@@ -4,18 +4,18 @@ import java.util.Arrays;
 import static student.StudentUtils.*;
 //필드는 private..setter getter ..?
 //멤버변수 접근자 private
-//메서드는 퍼블릭 / 필드 프라이빗 / 생성자 프라이빗...
+//메서드는 퍼블릭(내부에서만 쓸거면 프라이빗) / 필드 프라이빗 / 생성자 프라이빗...
 //logic(본 기능)
 public class StudentService {
-	Student[] students = new Student[5];//필요에따라늘려야됨....
-	int cnt;
+	private Student[] students = new Student[5];//필요에따라늘려야됨....
+	private int cnt;
 	
 	{
 		students[cnt++] = new Student(1, "새똥이", 80, 90, 100);
 		students[cnt++] = new Student(2, "개똥이", 77, 66, 77);
 	}
-//	학생등록...데이터베이스관련단어사용x(insert 등)..인간친화어 사용
-	void add() {
+//	학생등록...데이터베이스관련 단어 사용x(insert 등)..인간친화어 사용
+	public void add() {
 		/*
 		if(students.length == cnt) {
 			students = Arrays.copyOf(students, students.length * 2);
@@ -40,7 +40,7 @@ public class StudentService {
 		students[cnt++] = new Student(no, name, kor, eng, mat);
 	}
 	//학생 목록 조회
-	void list() {
+	public void list() {
 		System.out.println("학번   이름    국어  영어  수학    총점   평균");
 		System.out.println("======================================");
 		for(int i = 0 ; i < cnt ; i++) {
@@ -58,7 +58,7 @@ public class StudentService {
 		System.out.println(Arrays.toString(students)); //주소값확인...>재정의되어서 확인안됨
 	}
 	//학생 이름, 점수 수정
-	void modify() {
+	public void modify() {
 		/*System.out.println("수정할 학생의 학번을 입력하세요.");
 		students[cnt-2] = new Student();
 		students[cnt-2].no = StudentUtils.nextInt("학번");
@@ -71,7 +71,7 @@ public class StudentService {
 	// 2.학번을 통한 배열탐색 >> 학생 
 		Student s = findByNo();		
 		// 3.이름, 국어, 영어, 수학 점수 변경
-		if(s == null) {
+		if(s == null) { //변경 - 지정한다 - setter
 			System.out.println("입력한 학번은 존재하지 않습니다");
 			return;
 		}
@@ -82,11 +82,11 @@ public class StudentService {
 	}
 	
 	
-	Student findByNo() { // 1~2번 기능 겹치니까 따로 메서드 만들기
+	private Student findByNo() { // 1~2번 기능 겹치니까 따로 메서드 만들기
 		Student student = null;
 		int no = nextInt("학번");
 		for(int i = 0; i< cnt; i++ ) {
-			if(students[i].getNo() == no) {
+			if(students[i].getNo() == no) { //학번 확인 - getter
 				student = students[i];
 			}
 		}
@@ -96,7 +96,7 @@ public class StudentService {
 		
 	
 	//학생삭제
-	void remove() {
+	public void remove() {
 		/*System.out.println("삭제할 학생의 학번을 입력하세요");
 		StudentUtils.nextInt("학번");
 		students[cnt-2] = new Student();

@@ -50,7 +50,7 @@ public class MemberMain {
 			System.out.println("m, m3는 다른 객체");
 		}
 		
-		MemberMain mm = new MemberMain();
+		MemberMain mm = new MemberMain(); //MemberMain 객체 만드는것도 가능은하다
 	
 	}
 }

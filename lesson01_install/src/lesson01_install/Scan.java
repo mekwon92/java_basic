@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Scan {
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(S)
+		Scanner scanner = new Scanner(System.in);
 				
 
 		char a = 'A';
