@@ -1,6 +1,7 @@
 package student;
 //기능적 분업,재사용 신경써야함
 import java.util.Arrays;
+
 import static student.StudentUtils.*;
 //필드는 private..setter getter ..?
 //멤버변수 접근자 private
@@ -14,6 +15,7 @@ public class StudentService {
 		students[cnt++] = new Student(2, "개똥이", 77, 66, 77);
 	}
 //	학생등록...데이터베이스관련 단어 사용x(insert 등)..인간친화어 사용
+
 	public void add() {
 			
 		if(cnt == students.length) { //꼭 미리 해야함
@@ -21,18 +23,42 @@ public class StudentService {
 		}
 		
 		int no = 0;
-		try { 
-			no = nextInt("학번");
+		no = nextInt("학번");
+		try {
+			for(int i = 0; i < cnt ; i++) {
+				if(no == students[i].getNo()) {
+					System.out.println("중복된 학번이 있습니다. 다시입력하세요");
+					return;
+				}
+			}	
 		} catch (NumberFormatException e) {
 			System.out.println("숫자를 입력하세요");
-		} catch 
 			
-		}
+		} 
 		
 		String name = nextLine("이름");
+		if(name.length()> 3 || name.length() < 2) {
+			System.out.println("이름의 길이는 2~3글자입니다.");
+			return;
+		}
 		int kor = nextInt("국어");
+		if(kor < 0 || kor > 100) {
+			System.out.println("0에서 100 사이의 값을 입력하세요.");
+			return;
+		}
 		int eng = nextInt("영어");
+		if(eng < 0 || eng > 100) {
+			System.out.println("0에서 100 사이의 값을 입력하세요.");
+			return;
+		}
 		int mat = nextInt("수학");
+		if(mat < 0 || mat > 100) {
+			System.out.println("0에서 100 사이의 값을 입력하세요.");
+			return;
+		}
+		
+		
+		
 		students[cnt++] = new Student(no, name, kor, eng, mat);
 	}
 	//학생 목록 조회
