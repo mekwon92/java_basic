@@ -13,4 +13,10 @@ public abstract class Diagram {
 	}
 	
 	public abstract double area();
+
+	public String getType() {
+		return type;
+	}
+	
+	
 }

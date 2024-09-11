@@ -19,7 +19,7 @@ public class Cylinder extends Diagram{
 	
 	@Override
 	public String toString() {
-		return "Cylinder [r=" + r + ", height=" + height + "]";
+		return "Cylinder [type=" + getType() + ", r=" + r + ", height=" + height + "]";
 	}
 	
 	

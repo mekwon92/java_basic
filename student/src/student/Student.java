@@ -1,6 +1,6 @@
 package student;
 //value object 값 
-public class Student {
+public class Student implements Cloneable{
 	//java beans 명세서에 맞게끔 수정
 	//field private , method public
 	//에러가 안나게 서비스에서 제어하세요...
@@ -11,6 +11,7 @@ public class Student {
 	private int kor;
 	private int eng;
 	private int mat;
+	private int[] arr;
 	
 	//생성자
 	
@@ -24,7 +25,16 @@ public class Student {
 		this.eng = eng;
 		this.mat = mat;
 	}
-	
+	public Student(Student s) { //생성자를 이용하는 방법..
+		no = s.no;//gettersetter 필요없음... 내클래스멤버니까...
+		name = s.name;
+		kor = s.kor;
+		eng = s.eng;
+		mat = s.mat;
+//		arr = s.arr; //얕은복사
+		if(s.arr != null)//예외처리
+			arr = s.arr.clone();//깊은복사
+	}
 	//getter setter 생성자 직후
 	//no getter
 	public int getNo() {
@@ -80,4 +90,34 @@ public class Student {
 	public double avg() {
 		return total() / 3d;
 	}
+	
+	//클론 연습용
+
+	@Override
+	public Student clone() {
+		Student obj = null;
+		try {
+			obj = (Student)super.clone();
+			if(arr != null)
+				obj.arr = arr.clone(); //deepcopy..?참조형이 안나올때까지,,cube랑 rect..
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return obj; //틈을보이지마!
+	}
+
+	//equals연습용
+	
+	//공변반환타입 파라미터는 불가?:!!
+	@Override //학번만 같아도 같은 개체로 취급하겠다
+	public boolean equals(Object obj) {//학생equals
+		if(obj == null || (obj instanceof Student)) return false;
+		Student s = (Student)obj;
+		return no == s.no && name.equals(s.name);//스트링equals
+	}
+	
+	
+	
+	
 }

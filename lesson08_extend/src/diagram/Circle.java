@@ -1,7 +1,7 @@
 package diagram;
 
 public class Circle extends Diagram{
-	private int r;
+	private static int r;
 	
 	public Circle(int r) {
 		super("원");
@@ -18,7 +18,7 @@ public class Circle extends Diagram{
 	}
 	@Override
 	public String toString() {
-		return "Circle [r=" + r + "]";
+		return "Circle [type=" + getType() + ", r=" + r + "]";
 	}
 	
 	

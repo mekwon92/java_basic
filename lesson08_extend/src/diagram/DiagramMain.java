@@ -10,7 +10,8 @@ public class DiagramMain  {
 		
 		for(Diagram d : diagrams) {
 			System.out.println(d);
-			System.out.println(d.area());
+			System.out.println("넓이 " + d.area());
+			System.out.println();
 		}
 		
 		System.out.println(diagrams[0].area());

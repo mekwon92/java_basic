@@ -21,7 +21,7 @@ public class Cube extends Diagram{
 	}
 	@Override
 	public String toString() {
-		return "Cube [width=" + width + ", height=" + height +  ", depth=" + depth + "]";
+		return "Cube [type=" + getType() + ", width=" + width + ", height=" + height +  ", depth=" + depth + "]";
 	}
 	
 	

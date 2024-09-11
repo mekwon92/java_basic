@@ -20,7 +20,7 @@ public class Rectangle extends Diagram {
 	
 	@Override
 	public String toString() {
-		return "Rectangle [width=" + width + ", height=" + height + "]";
+		return "Rectangle [type=" + getType() + ", width=" + width + ", height=" + height + "]";
 	}
 	
 	
