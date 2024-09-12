@@ -75,7 +75,7 @@ public class Student implements Cloneable{
 	
 	
 	public String toString() { //간단하게만들어주기
-		return String.format("%4s %4s %4d %4d %4d %6d %6.2f", no, name, kor, eng, mat, total(), avg());
+		return String.format("%5s %5s %5d %5d %5d %5d %7.2f", no, name, kor, eng, mat, total(), avg());
 	}
 	
 	
