@@ -1,6 +1,5 @@
 package lesson08_extend.day2.ex2;
 // 다형성
-//
 // 조상타입 객체 = new 자손생성자();
 public class PolyEx {
 	public static void main(String[] args) {
@@ -23,10 +22,10 @@ public class PolyEx {
 		System.out.println(c);
 		
 		Parent p2 = new Parent();
-	  //((Child)p2).eat(); //컴파일러가 체크 못하고 오류가 발생됨
+//	    ((Child)p2).eat(); //컴파일러가 체크 못하고 런타임 오류가 발생
 							//원래 불가능하지만 상속관계라 체크를 못함...
-		//p2 = p;
-		//((Child)p2).eat();
+//		p2 = p;
+//		((Child)p2).eat();
 		
 		//Uncle u = new Child(); //상속관계가 아니라 불가능
 		Uncle u = new Uncle();
@@ -41,6 +40,12 @@ public class PolyEx {
 		
 		if(p2 instanceof Child) {
 			System.out.println("p2는 Child의 인스턴스");
+		}
+		if(p instanceof Parent) {
+			System.out.println("p는 Parent의 인스턴스");
+		}
+		if(p instanceof Child) {
+			System.out.println("p는 Child의 인스턴스");
 		}
 	}
 }
