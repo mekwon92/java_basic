@@ -7,6 +7,9 @@ public class Parent {
 		System.out.println("부모가 걷는다");
 	}
 	
+	void prun()	{
+		System.out.println("부모가 달린다");
+	}
 	void run()	{
 		System.out.println("부모가 달린다");
 	}

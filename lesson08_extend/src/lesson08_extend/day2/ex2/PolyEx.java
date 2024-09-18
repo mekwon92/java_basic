@@ -8,15 +8,19 @@ public class PolyEx {
 		Object o2 = new String("abcd");
 		
 		Child c = new Child();
-		c.walk(); //parent만 갖고있음
-		c.run(); // 둘다 갖고있음
-		c.eat(); // child만 갖고있음
-		System.out.println(c);
+		c.walk();// parent만 갖고있음 - 부모가 걷는다
+		c.crun();// 자식메서드 접근가능
+		c.prun();// 부모메서드 접근가능
+		c.run(); // 자식이 달린다
+		c.eat(); // child만 갖고있음 - 자식이 먹는다
+		System.out.println(c); //c의 참조값
 		
 		
 		Parent p = new Child();
-		p.walk(); // 
-		p.run();  // 자식이 달린다... 중요한건 타입이 아니라 인스턴스가 중요하다.......!!!!! 런타임..과관련이....
+		p.walk();// 부모가 걷는다.
+	  //p.crun();// 자식메서드 접근불가
+		p.prun();// 부모메서드 접근가능
+		p.run(); // 자식이 달린다... 중요한건 타입이 아니라 인스턴스가 중요하다.......!!!!! 런타임..과관련이....
 	  //p.eat(); // 불가능입니다. 왜?! p의 타입이 Parent 이기 때문에 컴파일이 오류로 판단..
 		((Child)p).eat(); //
 		System.out.println(c);

@@ -5,13 +5,13 @@ import java.util.Stack;
 public class StackMain {
 	public static void main(String[] args) {
 		Stack<String> stack = new Stack<>();
-		stack.push("»õ¶ËÀÌ2");
-		stack.push("¿¡¾îÄÜ");
-		stack.push("Ãò¸£");
+		stack.push("ìƒˆë˜¥ì´2");
+		stack.push("ì—ì–´ì½˜");
+		stack.push("ì¸„ë¥´");
 		for(int i = 0 ; i < 100_000 ; i++) {
-			stack.push("»õ¶ËÀÌ");
+			stack.push("ìƒˆë˜¥ì´");
 		}
-		System.out.println(stack.peek()); // Á¦°ÅÇÏÁö¾Ê°í ¸ÇÀ§¿¡ÀÖ´Â°Ô ¹ºÁö È®ÀÎ¸¸ ÇÔ
+		System.out.println(stack.peek()); // ì œê±°í•˜ì§€ì•Šê³  ë§¨ìœ„ì—ìˆëŠ”ê²Œ ë­”ì§€ í™•ì¸ë§Œ í•¨
 		System.out.println(stack.size());
 		System.out.println(stack.pop());
 		System.out.println(stack.size());
