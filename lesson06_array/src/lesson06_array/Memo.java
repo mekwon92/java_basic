@@ -14,6 +14,7 @@ public class Memo {
 
 	System.out.println(Arrays.toString(arr));
 	
+	
   //arr	= {1, 2, 3}; //error
 	arr = new int[] {1, 2, 3};
 	

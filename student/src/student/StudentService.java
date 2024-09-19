@@ -1,22 +1,29 @@
 package student;
+
+import java.util.ArrayList;
 //기능적 분업,재사용 신경써야함
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 import static student.StudentUtils.*;
 //필드는 private..setter getter ..?
 //멤버변수 접근자 private
 //메서드는 퍼블릭(내부에서만 쓸거면 프라이빗) / 필드 프라이빗 / 생성자 프라이빗...
 //logic(본 기능)
 public class StudentService {
-	private Student[] students = new Student[5];//필요에따라늘려야됨....
-	private Student[] totalSortedStudents; 
-	private Student[] noSortedStudents; 
-	private Student[] nameSortedStudents; //clone 후 정렬
-	private int cnt;
+	private List<Student> students = new ArrayList<Student>();//필요에따라늘려야됨....
+//	private List<Student> totalSortedStudents; 
+//	private List<Student> noSortedStudents; 
+//	private List<Student> nameSortedStudents; //clone 후 정렬
+	
+	//private int cnt;
 	{
-		students[cnt++] = new Student(1, "새똥이", 80, 90, 100);
-		students[cnt++] = new Student(2, "개똥이", 77, 66, 77);
-		students[cnt++] = new Student(3, "말똥이", 77, 44, 22);
-		students[cnt++] = new Student(4, "소똥이", 77, 66, 33);
+		students.sort(null);// 이걸로 활용........
+		students.add(new Student(1, "새똥이", 80, 90, 100));
+		students.add(new Student(2, "개똥이", 77, 66, 77));
+		students.add(new Student(3, "말똥이", 77, 44, 22));
+		students.add(new Student(4, "소똥이", 77, 66, 33));
 		cloneAndSort();
 		
 	}
@@ -33,24 +40,27 @@ public class StudentService {
 		int mat = checkRange(nextInt("수학"));
 		
 		
-		if(cnt == students.length) { //꼭 미리 해야함
-			students = Arrays.copyOf(students, students.length * 2);
-		}
-		
-		students[cnt++] = new Student(no, name, kor, eng, mat);
+		students.add(new Student(no, name, kor, eng, mat));
 	}
 	
 	
 	//학생 목록 조회
 	public void list() {
 		int input = checkRange(nextInt("1. 입력순 2. 학번순 3. 이름순 4. 석차순"),1,4);
-		Student[] tmp = null;
+		List<Student> origin = new ArrayList<Student>(students);
 		switch (input) {
 		case 1:
-			tmp = students;
+			System.out.println(students);
 			break;
 		case 2:
-			tmp = noSortedStudents;
+			students.sort(new Comparator<Student>() {
+
+				@Override
+				public int compare(Student o1, Student o2) {
+					return students.no - students.no;
+				}
+			
+			});
 			break;
 		case 3:
 			tmp = nameSortedStudents;

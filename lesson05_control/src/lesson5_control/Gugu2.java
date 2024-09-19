@@ -13,8 +13,8 @@ for(int i = 2; i <= 9 ; i++) {
 	System.out.println("["+i+"단]");
 	for(int j = 1 ; j <= 9 ; j++) {
 		if(j ==5) {
-			continue; //B가 5일 때 건너뛰고 출력 
-			//break; //B가 5일 때 반복 정지
+			//continue; //B가 5일 때 건너뛰고 출력 
+			break; //B가 5일 때 반복 정지
 		}
 		System.out.println(i + "*" + j + "=" + i * j);
 	}
