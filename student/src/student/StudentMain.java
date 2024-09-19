@@ -20,15 +20,12 @@ public class StudentMain{
 					 break;
 				case 2:
 					ss.add();
-					ss.cloneAndSort();
 					break;
 				case 3:
-					ss.modify();
-					ss.cloneAndSort();
+					//ss.modify();
 					break;
 				case 4:
 					ss.remove();
-					ss.cloneAndSort();
 					break;
 				case 5:
 					System.out.println("bye");
