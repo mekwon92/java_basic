@@ -25,6 +25,9 @@ public class PolyEx {
 		((Child)p).eat(); //
 		System.out.println(c);
 		
+//		p = c; 가능
+//		c = p; 불가능
+		
 		Parent p2 = new Parent();
 //	    ((Child)p2).eat(); //컴파일러가 체크 못하고 런타임 오류가 발생
 							//원래 불가능하지만 상속관계라 체크를 못함...

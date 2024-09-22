@@ -9,7 +9,6 @@ public class WrapperEx {
 		System.out.println(i1 + i2 + i3); //unboxing 연산자타입을 가림
 		
 		Integer i4 = 20;
-		
 		System.out.println(i2 == i4); //참조형 간의 주소비교
 		System.out.println(i2.equals(i4)); // 값 비교
 		
@@ -44,10 +43,10 @@ public class WrapperEx {
 	
 		double d = Double.parseDouble(str);
 	
-		System.out.println(Integer.parseInt("FF",16));
-		System.out.println(Integer.toBinaryString(255));
-		System.out.println(Integer.toOctalString(255));
-		System.out.println(Integer.toHexString(255));
+		System.out.println(Integer.parseInt("FF",16)); // FF를 16진수로 해석해서 10진수로 변환
+		System.out.println(Integer.toBinaryString(255)); // 2진수로 변환
+		System.out.println(Integer.toOctalString(255)); // 8진수로 변환
+		System.out.println(Integer.toHexString(255)); // 16진수로 변환
 		
 		int i = 0xFF;
 		

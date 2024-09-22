@@ -22,13 +22,11 @@ public class ComplexerMain {
 			
 			@Override
 			public void send(String msg) {
-				// TODO Auto-generated method stub
 				System.out.println("fax 송신");
 			}
 			
 			@Override
 			public void receive(String msg) {
-				// TODO Auto-generated method stub
 				System.out.println("fax 수신");
 			}
 		};

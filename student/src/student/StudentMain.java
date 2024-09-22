@@ -13,7 +13,7 @@ public class StudentMain{
 	
 		while(true) {
 			try {
-				int input = ss.checkRange(StudentUtils.nextInt("1. 조회 2.등록 3.수정 4.삭제 5.종료"),1,5);	//객체로하거나 클래스만들거나
+				int input = StudentUtils.next("1. 조회 2.등록 3.수정 4.삭제 5.종료", Integer.class, t -> t >= 1 && t <= 5 , "1~5 사이의 수" );
 				switch(input) {
 				case 1:
 					ss.list();
@@ -22,7 +22,7 @@ public class StudentMain{
 					ss.add();
 					break;
 				case 3:
-					//ss.modify();
+					ss.modify();
 					break;
 				case 4:
 					ss.remove();

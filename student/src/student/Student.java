@@ -28,6 +28,7 @@ public class Student{
 		this.mat = mat;
 	}
 	public Student(Student s) { //생성자를 이용하는 방법..
+		setNo(s.getNo());
 		no = s.no;//gettersetter 필요없음... 내클래스멤버니까...
 		name = s.name;
 		kor = s.kor;
