@@ -7,15 +7,15 @@ import java.util.function.Predicate;
 public class StudentUtils {
 	static Scanner scanner = new Scanner(System.in);
 
-	static String nextLine(String msg) {
-		System.out.println(msg);
-		System.out.print("> ");
-		return scanner.nextLine();
-	}
+//	private static String nextLine(String msg) {
+//		System.out.println(msg);
+//		System.out.print("> ");
+//		return scanner.nextLine();
+//	}
 
-	static int nextInt(String msg) {
-		return Integer.parseInt(nextLine(msg));
-	}
+//	private static int nextInt(String msg) {
+//		return Integer.parseInt(nextLine(msg));
+//	}
 
 	// 입력 통합
 	static <T> T next(String msg, Class<T> clazz) {
@@ -39,7 +39,7 @@ public class StudentUtils {
 	static <T> T next(String msg, Class<T> clazz, Predicate<T> con, String errMsg) {
 		while (true) {
 			try {
-				T t = next(msg, clazz);
+				T t = next(msg, clazz); //입력통합 호출
 				if (con.test(t)) {
 					return t;
 				} else {

@@ -15,9 +15,6 @@ public class ComplexerMain {
 		com.receive("02-8765-4321");
 		
 		//익명클래스
-		Fax fax2; //가능
-		Fax fax3 = com;
-		
 		Fax fax = new Fax() {
 			
 			@Override
@@ -31,12 +28,14 @@ public class ComplexerMain {
 			}
 		};
 		fax.send("abcd");
+		fax.receive("asdf");
 		
 		Complexer com2 = new Complexer() { //인스턴스만들면서 오버라이드
 			public void scan() {
 				System.out.println("com2의 스캔");
 			}
-		}; 		
+		};
+		com2.scan();
 
 		
 	}

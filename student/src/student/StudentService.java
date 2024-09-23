@@ -1,15 +1,16 @@
 package student;
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+//영속화
 import java.util.ArrayList;
 //기능적 분업,재사용 신경써야함
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-
 import static student.StudentUtils.*;
-//필드는 private..setter getter ..?
-//멤버변수 접근자 private
-//메서드는 퍼블릭(내부에서만 쓸거면 프라이빗) / 필드 프라이빗 / 생성자 프라이빗...
 //logic(본 기능)
 public class StudentService {
 	private List<Student> students = new ArrayList<Student>();
@@ -17,26 +18,67 @@ public class StudentService {
 	private List<Student> nameSortedStudents;
 	private List<Student> totalSortedStudents;
 	
+
 	{
+		ObjectInputStream ois = null;
+		try {
+			ois = new ObjectInputStream(new FileInputStream("students.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<Student> result = null;
+		try {
+			result = (List<Student>) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		result.forEach(System.out::println);
+		
+		
 		students.add(new Student(1, "새똥이", 80, 90, 100));
 		students.add(new Student(2, "개똥이", 77, 66, 77));
 		students.add(new Student(3, "말똥이", 77, 44, 22));
 		students.add(new Student(4, "소똥이", 77, 66, 33));
+		
 		cloneAndSort();
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream("students.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			oos.writeObject(students);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 //	학생등록...데이터베이스관련 단어 사용x(insert 등)..인간친화어 사용
 
 	public void add() {
-		int no = StudentUtils.next("학번", Integer.class, t -> findBy(t) == null, "중복되지않는 학번");
-//		int no =nextInt("학번");
+		int no = next("학번", Integer.class, n -> findBy(n) == null , "중복학번 존재함");
+//		int no = next("학번", Integer.class, n -> true, null); //어차피 여기서 처리를 안하니까 null
 //		if(findBy(no) != null) {
 //			throw new RuntimeException("중복되지않는 학번을 입력하세요");
 //		}
-		String name = StudentUtils.next("이름", String.class,t -> t.matches("^[가-힣]{2,4}"), "한글로 2~4글자로 입력하세요");//예외처리할게많으니 메소드로 따로 빼는게 좋음
-		int kor = StudentUtils.next("국어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
-		int eng = StudentUtils.next("영어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
-		int mat = StudentUtils.next("수학", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
+		String name = next("이름", String.class, n -> n.matches("^[가-힣]{2,4}"), "한글로 2~4글자로 입력하세요");//예외처리할게많으니 메소드로 따로 빼는게 좋음
+		int kor = next("국어", Integer.class,i -> i >= 0 && i <= 100 , "0~100 사이의 값");
+		int eng = next("영어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
+		int mat = next("수학", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
 		
 		
 		students.add(new Student(no, name, kor, eng, mat));
@@ -45,7 +87,7 @@ public class StudentService {
 	
 	//학생 목록 조회
 	public void list() {
-		int input = StudentUtils.next("1. 입력순 2. 학번순 3. 이름순 4. 석차순", Integer.class, t -> t >= 1 && t <= 4, "1에서 4 사이의 수");
+		int input = next("1. 입력순 2. 학번순 3. 이름순 4. 석차순", Integer.class, t -> t >= 1 && t <= 4, "1에서 4 사이의 수");
 		List<Student> tmp = null;
 		switch (input) {
 		case 1:
@@ -76,39 +118,31 @@ public class StudentService {
 	public void modify() {
 	// 1.학번을 입력 
 	// 2.학번을 통한 배열탐색 >> 학생 
-		Student s = findBy(nextInt("학번"));
+		Student s = findBy(next("학번", Integer.class, n -> findBy(n) != null , "학번 존재안함"));	
 		// 3.이름, 국어, 영어, 수학 점수 변경
 		if(s == null) { //변경 - 지정한다 - setter
 			System.out.println("입력한 학번은 존재하지 않습니다");
 			return;
 		}
-		s.setName(StudentUtils.next("이름", String.class,t -> t.matches("^[가-힣]{2,4}"), "한글로 2~4글자로 입력하세요"));
-		s.setKor(StudentUtils.next("국어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값"));
-		s.setEng(StudentUtils.next("영어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값"));
-		s.setMat(StudentUtils.next("숫자", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값"));
+		
+		String name =next("이름", String.class,t -> t.matches("^[가-힣]{2,4}"), "한글로 2~4글자로 입력하세요");
+		int kor = next("국어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
+		int eng = next("영어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
+		int mat = next("숫자", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
+		
+		s.setName(name);
+		s.setKor(kor);
+		s.setEng(eng);
+		s.setMat(mat);
 	}
 	
 	//학생삭제
 	public void remove() {
-		int no = StudentUtils.next("학번", Integer.class, t -> findBy(t) != null, "없는학번");
-		students.remove(find(no));
-//		Student s = StudentUtils.next("학번", Student.class, t -> findBy(t.getNo()) != null, "없는학번");	
-//		if(s == null) {
-//			System.out.println("입력한 학번은 존재하지 않습니다");
-//			return;
-//		}
-//		students.remove(s);
+		Student s = findBy(next("학번", Integer.class, n -> findBy(n) != null , "학번 존재안함"));	
+		students.remove(s);
+		System.out.println("삭제완료");
 	}	
 	
-	private Student find(int no) {
-		int idx = 0;
-		for(int i = 0; i<students.size(); i++) {
-			if(students.get(i).getNo() == no) {
-				idx = i;
-			}
-		}
-		return students.get(idx);
-	}
 	
 	
 	private Student findBy(int no) { // 1~2번 기능 겹치니까 따로 메서드 만들기

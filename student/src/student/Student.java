@@ -1,8 +1,9 @@
 package student;
 
+import java.io.Serializable;
 
 //value object 값 
-public class Student{
+public class Student implements Serializable{
 	//java beans 명세서에 맞게끔 수정
 	//field private , method public
 	//에러가 안나게 서비스에서 제어하세요...
