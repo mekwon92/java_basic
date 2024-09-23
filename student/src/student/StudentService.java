@@ -10,6 +10,8 @@ import java.util.ArrayList;
 //기능적 분업,재사용 신경써야함
 import java.util.Comparator;
 import java.util.List;
+
+
 import static student.StudentUtils.*;
 //logic(본 기능)
 public class StudentService {
@@ -30,9 +32,8 @@ public class StudentService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<Student> result = null;
 		try {
-			result = (List<Student>) ois.readObject();
+			students = (List<Student>) ois.readObject();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,31 +41,13 @@ public class StudentService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		result.forEach(System.out::println);
-		
-		
-		students.add(new Student(1, "새똥이", 80, 90, 100));
-		students.add(new Student(2, "개똥이", 77, 66, 77));
-		students.add(new Student(3, "말똥이", 77, 44, 22));
-		students.add(new Student(4, "소똥이", 77, 66, 33));
-		
+		try {
+			ois.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		cloneAndSort();
-		ObjectOutputStream oos = null;
-		try {
-			oos = new ObjectOutputStream(new FileOutputStream("students.txt"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			oos.writeObject(students);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 //	학생등록...데이터베이스관련 단어 사용x(insert 등)..인간친화어 사용
@@ -82,6 +65,7 @@ public class StudentService {
 		
 		
 		students.add(new Student(no, name, kor, eng, mat));
+		
 	}
 	
 	
@@ -220,6 +204,26 @@ public class StudentService {
 		public int compare(Student o1, Student o2) {
 			return o2.total()-o1.total();
 		}
+	}
+
+	public void bye() throws IOException {
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream("students.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			oos.writeObject(students);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		oos.close();
 	}
 	
 	

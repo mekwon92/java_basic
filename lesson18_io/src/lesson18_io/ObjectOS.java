@@ -32,7 +32,8 @@ public class ObjectOS {
 		List<Member> result = (List<Member>) ois.readObject();
 		result.forEach(System.out::println); //age 모름
 
-	
+		oos.close();
+		ois.close();
 		
 	}	
 }

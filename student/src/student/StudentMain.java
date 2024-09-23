@@ -1,5 +1,6 @@
 package student;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 //UI
@@ -7,7 +8,7 @@ import java.util.Scanner;
 //학번으로 구분.......
 //로직은 로직구간만 담당하고 서비스는 예외를 던지고 메인이 받도록 해야됨
 public class StudentMain{
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		StudentService ss = new StudentService();
 	
@@ -28,7 +29,7 @@ public class StudentMain{
 					ss.remove();
 					break;
 				case 5:
-					System.out.println("bye");
+					ss.bye();
 					break;
 				default:
 					break;
