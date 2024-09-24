@@ -1,7 +1,6 @@
 package student;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 //UI
 //CRUD : Create Read(배열?) Update Delete
@@ -9,7 +8,6 @@ import java.util.Scanner;
 //로직은 로직구간만 담당하고 서비스는 예외를 던지고 메인이 받도록 해야됨
 public class StudentMain{
 	public static void main(String[] args) throws IOException {
-		Scanner scanner = new Scanner(System.in);
 		StudentService ss = new StudentService();
 	
 		while(true) {
@@ -21,16 +19,19 @@ public class StudentMain{
 					 break;
 				case 2:
 					ss.add();
+					ss.cloneAndSort();
 					break;
 				case 3:
 					ss.modify();
+					ss.cloneAndSort();
 					break;
 				case 4:
 					ss.remove();
+					ss.cloneAndSort();
 					break;
 				case 5:
-					ss.bye();
-					break;
+					System.out.println("bye");
+					return;
 				default:
 					break;
 				}
@@ -41,6 +42,7 @@ public class StudentMain{
 			}
 			catch(RuntimeException e) {
 				System.out.println(e.getMessage());
+				e.printStackTrace();
 			}
 		}
 		

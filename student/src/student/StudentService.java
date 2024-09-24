@@ -5,15 +5,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-//영속화
 import java.util.ArrayList;
-//기능적 분업,재사용 신경써야함
 import java.util.Comparator;
 import java.util.List;
-
-
 import static student.StudentUtils.*;
+
+//영속화
+//기능적 분업,재사용 신경써야함
 //logic(본 기능)
+
+
+@SuppressWarnings("unchecked")
 public class StudentService {
 	private List<Student> students = new ArrayList<Student>();
 	private List<Student> noSortedStudents;
@@ -22,29 +24,44 @@ public class StudentService {
 	
 
 	{
-		ObjectInputStream ois = null;
-		try {
-			ois = new ObjectInputStream(new FileInputStream("students.txt"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
+//		ObjectInputStream ois = null;
+//		try {
+//			ois = new ObjectInputStream(new FileInputStream("students.txt"));
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			students = (List<Student>) ois.readObject();
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			ois.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data.ser"))){
+			ois.readObject();
 			students = (List<Student>) ois.readObject();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			ois.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+//			stream.close();//try()안에 넣어서 생략가능해짐
+		}catch (FileNotFoundException e) {
+			students.add(new Student(1, "새똥이", 80, 90, 100));
+			students.add(new Student(2, "개똥이", 77, 66, 77));
+			students.add(new Student(3, "새똥이", 80, 90, 100));
+			students.add(new Student(4, "개똥이", 77, 66, 77));
+			System.out.println("파일 검색 실패, 초기화 더미 데이터 처리 완료");
+		} 
+		catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		cloneAndSort();
@@ -53,11 +70,11 @@ public class StudentService {
 //	학생등록...데이터베이스관련 단어 사용x(insert 등)..인간친화어 사용
 
 	public void add() {
-		int no = next("학번", Integer.class, n -> findBy(n) == null , "중복학번 존재함");
 //		int no = next("학번", Integer.class, n -> true, null); //어차피 여기서 처리를 안하니까 null
 //		if(findBy(no) != null) {
 //			throw new RuntimeException("중복되지않는 학번을 입력하세요");
 //		}
+		int no = next("학번", Integer.class, n -> findBy(n) == null , "중복학번 존재함");
 		String name = next("이름", String.class, n -> n.matches("^[가-힣]{2,4}"), "한글로 2~4글자로 입력하세요");//예외처리할게많으니 메소드로 따로 빼는게 좋음
 		int kor = next("국어", Integer.class,i -> i >= 0 && i <= 100 , "0~100 사이의 값");
 		int eng = next("영어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
@@ -100,21 +117,21 @@ public class StudentService {
 	
 	//학생 이름, 점수 수정
 	public void modify() {
-	// 1.학번을 입력 
-	// 2.학번을 통한 배열탐색 >> 학생 
+//	 1.학번을 입력 
+//	 2.학번을 통한 배열탐색 >> 학생 
 		Student s = findBy(next("학번", Integer.class, n -> findBy(n) != null , "학번 존재안함"));	
-		// 3.이름, 국어, 영어, 수학 점수 변경
-		if(s == null) { //변경 - 지정한다 - setter
-			System.out.println("입력한 학번은 존재하지 않습니다");
-			return;
-		}
+//		if(s == null) { //변경 - 지정한다 - setter
+//			System.out.println("입력한 학번은 존재하지 않습니다");
+//			return;
+//		}
 		
+//	 3.이름, 국어, 영어, 수학 점수 변경
 		String name =next("이름", String.class,t -> t.matches("^[가-힣]{2,4}"), "한글로 2~4글자로 입력하세요");
+		s.setName(name);
+		
 		int kor = next("국어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
 		int eng = next("영어", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
 		int mat = next("숫자", Integer.class,t -> t >= 0 && t <= 100 , "0~100 사이의 값");
-		
-		s.setName(name);
 		s.setKor(kor);
 		s.setEng(eng);
 		s.setMat(mat);
@@ -196,8 +213,10 @@ public class StudentService {
 		});
 		Comparator<Student> comp = new MyComp();
 		totalSortedStudents.sort(comp);
-	
+		save();	
 	}
+	
+	
 	
 	class MyComp implements Comparator<Student>{
 		@Override
@@ -206,26 +225,31 @@ public class StudentService {
 		}
 	}
 
-	public void bye() throws IOException {
-		ObjectOutputStream oos = null;
-		try {
-			oos = new ObjectOutputStream(new FileOutputStream("students.txt"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//	public void bye() throws IOException {
+//		ObjectOutputStream oos = null;
+//		try {
+//			oos = new ObjectOutputStream(new FileOutputStream("students.txt"));
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			oos.writeObject(students);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}		
+//		oos.close();
+//	}
+	public void save() {
+		try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("data.ser"))){
+			stream.writeObject(students);
+//			stream.close();//생략가능해짐
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			oos.writeObject(students);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		oos.close();
-	}
-	
-	
-	
+	}	
 }

@@ -11,6 +11,8 @@ public class LocalTest {
 		}
 		return new MyClass();
 	}
+	
+	
 	static MyInter create2() {
 		return new MyInter() {
 			@Override
@@ -19,9 +21,17 @@ public class LocalTest {
 			}
 		};		
 	}
+	
+	
+	
 	static MyInter create3() {
-		return () -> System.out.println("lamde.run()");
+		return () -> System.out.println("lambda.run()");
 	}
+	
+	
+	
+	
+	
 	
 	public static void main(String[] args) {
 		MyInter mi = create();

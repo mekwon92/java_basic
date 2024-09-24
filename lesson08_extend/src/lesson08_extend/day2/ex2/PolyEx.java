@@ -29,12 +29,14 @@ public class PolyEx {
 //		c = p; 불가능
 		
 		Parent p2 = new Parent();
-//	    ((Child)p2).eat(); //컴파일러가 체크 못하고 런타임 오류가 발생
-							//원래 불가능하지만 상속관계라 체크를 못함...
+//	    ((Child)p2).eat(); 	
+		//instanceof 안되니까 형변환 불가능함
+		//컴파일러가 체크 못하고 런타임 오류가 발생
+		//원래 불가능하지만 상속관계라 체크를 못함...
+				
 //		p2 = p;
-//		((Child)p2).eat();
 		
-		//Uncle u = new Child(); //상속관계가 아니라 불가능
+		//Uncle u = new Child(); //상속관계가 아니라 당연히 불가능
 		Uncle u = new Uncle();
 		u.walk();
 	  //((Child)u).walk(); 얘는 컴파일러도 막아줌. 관계가없응께

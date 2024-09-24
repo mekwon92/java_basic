@@ -28,7 +28,7 @@ class Outer {
 			//System.out.println(i); 불가능
 			System.out.println(si);
 			System.out.println(Inner.si2);
-			System.out.println(i3); //static {}이면 이것도 불가능함
+			System.out.println(i3); //static 초기화하면 이것도 불가능함
 			System.out.println(si3);
 		}
 	}
