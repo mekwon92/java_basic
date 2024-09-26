@@ -36,6 +36,8 @@ public class MapEx {
 		for(String key : keys) {
 			System.out.println(key + " :: " + map.get(key));
 		}
+		
+		
 		Collection<Integer> collection = map.values();
 		System.out.println(collection);
 		
