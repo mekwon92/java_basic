@@ -24,34 +24,9 @@ public class StudentService {
 	
 
 	{
-//		ObjectInputStream ois = null;
-//		try {
-//			ois = new ObjectInputStream(new FileInputStream("students.txt"));
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			students = (List<Student>) ois.readObject();
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			ois.close();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data.ser"))){
-			ois.readObject();
 			students = (List<Student>) ois.readObject();
 //			stream.close();//try()안에 넣어서 생략가능해짐
 		}catch (FileNotFoundException e) {
@@ -164,22 +139,6 @@ public class StudentService {
 	 */
 	
 
-//	String checkName(String name) {
-//		char[] chs = name.toCharArray();
-//		String s = new String(chs);
-//		if(chs.length < 2 || chs.length > 3 ) {
-//			throw new RuntimeException("이름은 2글자에서 4글자 사이로 입력하세요.");
-//		}
-//		//'가', '나', '다', '라'
-//		for(char c : chs) {
-//			if(c < '가' || c > '힣') {
-//				throw new RuntimeException("한글로 구성된 이름을 입력하세요.");
-//			}
-//			
-//		}
-//		return name;
-//	}
-	
 	
 	/**범위에 대한 탐색 start 이상, end 이하의 조건을 만족하지 않을 경우 예외 발생
 	 * @param num 검증대상숫자
@@ -225,25 +184,6 @@ public class StudentService {
 		}
 	}
 
-//	public void bye() throws IOException {
-//		ObjectOutputStream oos = null;
-//		try {
-//			oos = new ObjectOutputStream(new FileOutputStream("students.txt"));
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			oos.writeObject(students);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}		
-//		oos.close();
-//	}
 	public void save() {
 		try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("data.ser"))){
 			stream.writeObject(students);

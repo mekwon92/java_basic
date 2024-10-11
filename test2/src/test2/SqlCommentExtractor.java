@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class SqlCommentExtractor {
 public static void main(String[] args) throws Exception {
 // 이 변수에 sql 파일 위치 폴더를 기록
-String dirStr = "C:\\Users\\tj\\AppData\\Roaming\\DBeaverData\\workspace6\\General\\Scripts";
+String dirStr = "C:\\Users\\tj\\AppData\\Roaming\\DBeaverData\\workspace6\\General\\Scripts\\주석출력할것";
 
 File dir = new File(dirStr);
 Arrays.asList(dir.listFiles()).stream().filter(s -> s.getName().endsWith(".sql")).forEach(f -> {

@@ -1,8 +1,13 @@
 package student;
 
 import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
 @SuppressWarnings("serial") //경고무시하게.. 
+@Getter
+@Setter
+
 //value object 값 
 public class Student implements Cloneable, Serializable{
 	//java beans 명세서에 맞게끔 수정
@@ -41,38 +46,7 @@ public class Student implements Cloneable, Serializable{
 			arr = s.arr.clone();//깊은복사
 	}
 	//getter setter 생성자 직후
-	//no getter
-	public int getNo() {
-		return no;
-	}
-	//no setter
-	public void setNo(int no) {
-		this.no = no;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getKor() {
-		return kor;
-	}
-	public void setKor(int kor) {
-		this.kor = kor;
-	}
-	public int getEng() {
-		return eng;
-	}
-	public void setEng(int eng) {
-		this.eng = eng;
-	}
-	public int getMat() {
-		return mat;
-	}
-	public void setMat(int mat) {
-		this.mat = mat;
-	}
+	
 	
 	
 	

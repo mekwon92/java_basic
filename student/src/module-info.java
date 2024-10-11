@@ -1,2 +1,3 @@
 module student {
+	requires lombok;
 }
