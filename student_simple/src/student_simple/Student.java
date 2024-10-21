@@ -3,17 +3,24 @@ package student_simple;
 public class Student {
 	int num;
 	String name;
+	
+	{
+		System.out.println(num); // 0
+		num = 10;
+		System.out.println(num); // 10
+	}
+	
+	
+	
+	
+	int total() {
+		return kor+math+eng;
+	}
+	
 	int kor;
 	int math;
 	int eng;
 	
-//	public Student(int num, String name, int kor, int math, int eng) {
-//		super();
-//		this.num = num;
-//		this.name = name;
-//		this.kor = kor;
-//		this.math = math;
-//		this.eng = eng;	
 	
 	@Override
 	public String toString() {
